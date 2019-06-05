@@ -34,6 +34,7 @@ var bwid = 20;
 var bhei = 7;
 var scale;
 var size;
+var removed = 6;
 
 function createBoard() {
   var pool = [11, 12, 13, 21, 22, 23, 31, 32, 33];
@@ -122,7 +123,7 @@ function createBoard() {
       }
     }
   }
-  for (var i = 0; i < 6; i++) {
+  for (var i = 0; i < removed; i++) {
     var pick = floor(random(used.length));
     board[used[pick][0]][used[pick][1]].flag = false;
     board[used[pick][0]][used[pick][1]].val = 0;
