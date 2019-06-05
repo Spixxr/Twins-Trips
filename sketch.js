@@ -26,7 +26,7 @@ function setup() {
   button.style("width:" + min(width, height) / 12 + "px");
   button.style("height:" + min(width, height) / 12 + "px");
   button.style("font-size:" + width / 50 + "px");
-  button.position(0, 0);
+  button.position(10, 10);
   button.mousePressed(createBoard);
 }
 var board;
