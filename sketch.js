@@ -218,6 +218,9 @@ function windowResized() {
   var wid = board.length;
   var hei = board[0].length;
   size = min(width / wid, height / hei);
+  button.style("width:" + min(width, height) / 12 + "px");
+  button.style("height:" + min(width, height) / 12 + "px");
+  button.style("font-size:" + width / 50 + "px");
 }
 
 function cut(x, scale) {
