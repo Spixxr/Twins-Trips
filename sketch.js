@@ -38,6 +38,7 @@ var size;
 var removed = 6;
 
 function createBoard() {
+  button.blur();
   var pool = [11, 12, 13, 21, 22, 23, 31, 32, 33];
   board = [];
   for (var x = 0; x < bwid; x++) {
