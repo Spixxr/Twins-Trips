@@ -122,7 +122,7 @@ function createBoard() {
       }
     }
   }
-  for (var i = 0; i < 0; i++) {
+  for (var i = 0; i < 6; i++) {
     var pick = floor(random(used.length));
     board[used[pick][0]][used[pick][1]].flag = false;
     board[used[pick][0]][used[pick][1]].val = 0;
