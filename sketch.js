@@ -239,6 +239,10 @@ function windowResized() {
   button.style("width:" + min(width, height) / 12 + "px");
   button.style("height:" + min(width, height) / 12 + "px");
   button.style("font-size:" + width / 50 + "px");
+  button2.style("width:" + min(width, height) / 12 + "px");
+  button2.style("height:" + min(width, height) / 12 + "px");
+  button2.style("font-size:" + width / 50 + "px");
+  button2.position(10, 10 + min(width, height) / 11);
 }
 
 function cut(x, scale) {
