@@ -339,6 +339,7 @@ function neighbors(x, y) {
 }
 
 function check() {
+  var nums = [];
   var checker = true;
   for (var x = 0; x < board.length; x++) {
     for (var y = 0; y < board[x].length; y++) {
@@ -347,9 +348,13 @@ function check() {
           return false;
         }
         checker = checker && neighbors(x, y);
+        if(!nums.includes(board[x][y].val)){
+          nums.push(board[x][y].val);
+        }
       }
     }
   }
+  checker = checker && nums.length == 9;
   return checker;
 }
 
