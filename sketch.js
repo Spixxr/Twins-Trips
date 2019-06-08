@@ -298,6 +298,18 @@ function startup() {
   });
 }
 
+function showSelect() {
+  if (selected != null) {
+    fill(ogre_odor);
+    textSize(size * ps / 3)
+    textAlign(CENTER, CENTER);
+    rectMode(CENTER);
+    rect(mouseX, mouseY, size * ps * scale, size * ps * scale, size * ps * scale / 3);
+    fill(smoky_black);
+    text(selected, mouseX, mouseY);
+  }
+}
+
 function showPick() {
   fill(ogre_odor);
   textSize(size * ps / 3)
@@ -311,21 +323,6 @@ function showPick() {
     } else {
       fill('#FC5130');
     }
-    rect(x, y, size * ps * scale, size * ps * scale, size * ps * scale / 3);
-    fill(smoky_black);
-    text(picks[i], x, y);
-  }
-}
-
-function showPick() {
-  fill(ogre_odor);
-  textSize(size * ps / 3)
-  textAlign(CENTER, CENTER);
-  rectMode(CENTER);
-  for (var i = 0; i < picks.length; i++) {
-    var x = (floor(i / 3) + 0.5) * size * ps;
-    var y = (i % 3 + 0.5) * size * ps + height - 3 * size * ps;
-    fill(ogre_odor);
     rect(x, y, size * ps * scale, size * ps * scale, size * ps * scale / 3);
     fill(smoky_black);
     text(picks[i], x, y);
