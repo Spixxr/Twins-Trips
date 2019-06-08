@@ -25,7 +25,7 @@ function setup() {
   button.style("border-radius:" + min(width, height) / 30 + "px");
   button.style("width:" + min(width, height) / 12 + "px");
   button.style("height:" + min(width, height) / 12 + "px");
-  button.style("font-size:" + width / 50 + "px");
+  button.style("font-size:" + min(width,height) / 30 + "px");
   button.style("outline:none");
   button.position(10, 10);
   button.mousePressed(createBoard);
@@ -37,7 +37,7 @@ function setup() {
   button2.style("border-radius:" + min(width, height) / 30 + "px");
   button2.style("width:" + min(width, height) / 12 + "px");
   button2.style("height:" + min(width, height) / 12 + "px");
-  button2.style("font-size:" + width / 50 + "px");
+  button2.style("font-size:" + min(width,height) / 30 + "px");
   button2.style("outline:none");
   button2.position(10, 10 + min(width, height) / 11);
   button2.mousePressed(solved);
@@ -238,10 +238,10 @@ function windowResized() {
   size = min(width / wid, height / hei);
   button.style("width:" + min(width, height) / 12 + "px");
   button.style("height:" + min(width, height) / 12 + "px");
-  button.style("font-size:" + width / 50 + "px");
+  button.style("font-size:" + min(width,height) / 30 + "px");
   button2.style("width:" + min(width, height) / 12 + "px");
   button2.style("height:" + min(width, height) / 12 + "px");
-  button2.style("font-size:" + width / 50 + "px");
+  button2.style("font-size:" + min(width,height) / 30 + "px");
   button2.position(10, 10 + min(width, height) / 11);
 }
 
