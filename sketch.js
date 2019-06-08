@@ -256,7 +256,6 @@ var lock = false;
 
 function mouseReleased() {
   if (!lock) {
-    //createBoard();
     let x = cut((mouseX - (width - board.length * size) / 2) / size, scale);
     let y = cut((mouseY - (height - board[0].length * size) / 2) / size, scale);
     if (x >= 0 && x < board.length && y >= 0 && y < board[0].length) {
@@ -299,16 +298,22 @@ function startup() {
   });
 }
 
-function showSelect() {
-  if (selected != null) {
-    fill(ogre_odor);
-    textSize(size * ps / 3)
-    textAlign(CENTER, CENTER);
-    rectMode(CENTER);
-    rect(mouseX, mouseY, size * ps * scale, size * ps * scale, size * ps * scale / 3);
+function showPick() {
+  fill(ogre_odor);
+  textSize(size * ps / 3)
+  textAlign(CENTER, CENTER);
+  rectMode(CENTER);
+  for (var i = 0; i < picks.length; i++) {
+    var x = (floor(i / 3) + 0.5) * size * ps;
+    var y = (i % 3 + 0.5) * size * ps + height - 3 * size * ps;
+    if(boardNums().includes(picks[i])){
+      fill('#FC513055');
+    } else {
+      fill('#FC5130');
+    }
+    rect(x, y, size * ps * scale, size * ps * scale, size * ps * scale / 3);
     fill(smoky_black);
-    text(selected, mouseX, mouseY);
-
+    text(picks[i], x, y);
   }
 }
 
@@ -338,8 +343,19 @@ function neighbors(x, y) {
   return flag;
 }
 
+function boardNums(){
+  let nums = [];
+  for (var x = 0; x < board.length; x++) {
+    for (var y = 0; y < board[x].length; y++) {
+      if (board[x][y].shown&&board[x][y].val != 0&&!nums.includes(board[x][y].val)) {
+        nums.push(board[x][y].val);
+      }
+    }
+  }
+  return nums;
+}
+
 function check() {
-  var nums = [];
   var checker = true;
   for (var x = 0; x < board.length; x++) {
     for (var y = 0; y < board[x].length; y++) {
@@ -348,12 +364,10 @@ function check() {
           return false;
         }
         checker = checker && neighbors(x, y);
-        if(!nums.includes(board[x][y].val)){
-          nums.push(board[x][y].val);
-        }
       }
     }
   }
+  let nums = boardNums();
   checker = checker && nums.length == 9;
   return checker;
 }
