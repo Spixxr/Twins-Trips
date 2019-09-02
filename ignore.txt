@@ -1,0 +1,76 @@
+$fn = 100;
+function scord(radius,theta,phi) = [
+    radius*cos(theta)*cos(phi),
+    radius*sin(theta)*cos(phi),
+    radius*sin(phi)
+];
+function scram(in) = concat([
+    for(z=[1:sides]) 
+        if(z%2==0)
+            in[sides-z] 
+        else
+            in[z]
+],"0");
+sides = 10;
+size = 50;
+dits = [for(y=[0:sides-1]) str(y)];
+labels = scram(dits);
+base = [for(i = [0:360/(floor(sides/2)):360]) scord(size,i,0)];
+    
+points = concat(base,[[0,0,size],[0,0,-size]]);
+
+
+
+faces = concat(
+    [for(k=[0:floor(sides/2-0.5)])
+        [k,sides/2+2,k+1]],
+    [for(l=[0:floor(sides/2-0.5)])
+        [l,sides/2+1,l+1]
+    ]
+);
+difference() {
+    polyhedron(points,faces,convexity=10);
+    numbers();
+}
+
+module numbers() {
+    dist = size*cos(360/sides);
+    for(s = [1/2:floor(sides/2)]){
+        let(
+            angle = s*720/sides,
+            x = cos(s*720/sides)*dist/2,
+            y = sin(s*720/sides)*dist/2,
+            z = size/2
+        ){
+            translate([x,y,z]){
+                rotate([0,atan(size/dist),angle]){
+                    rotate([0,0,90]){
+                        translate([0,0,-size/20]){linear_extrude(size/10){
+                            text(labels[s-0.5],dist/4,halign="center",valign="center");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(s = [1/2:floor(sides/2)]){
+        let(
+            angle = s*720/sides,
+            x = cos(s*720/sides)*dist/2,
+            y = sin(s*720/sides)*dist/2,
+            z = -size/2
+        ){
+            translate([x,y,z]){
+                rotate([0,180-atan(size/dist),angle]){
+                    rotate([0,0,270]){
+                        translate([0,0,-size/20]){linear_extrude(size/10){
+                            text(labels[s-0.5+sides/2],dist/4,halign="center",valign="center");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
