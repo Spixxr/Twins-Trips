@@ -6,7 +6,7 @@ let green;
 var button;
 
 function setup() {
-  errie_black = color('#0E1519');
+  errie_black = color('#0E1518');
   ogre_odor = color('#FC5130');
   smoky_black = color('#100007');
   satin_gold = color('#CBA135');
